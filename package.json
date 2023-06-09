@@ -1,0 +1,32 @@
+{
+  "name": "iam-kit",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "release": "bumpp --no-push",
+    "publish": "pnpm publish --access public --no-git-checks"
+  },
+  "author": {
+    "name": "alwynou",
+    "email": "alwynou@gmail.com",
+    "url": "https://github.com/alwynou"
+  },
+  "keywords": [
+    "iam-kit"
+  ],
+  "files": [
+    "src"
+  ],
+  "homepage": "https://github.com/alwynou/iam-kit#readme",
+  "bugs": "https://github.com/alwynou/iam-kit/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alwynou/iam-kit"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "bumpp": "^9.1.1",
+    "typescript": "^5.1.3"
+  }
+}
