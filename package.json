@@ -2,31 +2,42 @@
   "name": "iam-kit",
   "version": "0.0.0",
   "description": "",
-  "main": "index.js",
-  "scripts": {
-    "release": "bumpp --no-push",
-    "publish": "pnpm publish --access public --no-git-checks"
-  },
-  "author": {
-    "name": "alwynou",
-    "email": "alwynou@gmail.com",
-    "url": "https://github.com/alwynou"
-  },
+  "type": "module",
   "keywords": [
     "iam-kit"
   ],
-  "files": [
-    "src"
-  ],
+  "license": "MIT",
   "homepage": "https://github.com/alwynou/iam-kit#readme",
   "bugs": "https://github.com/alwynou/iam-kit/issues",
   "repository": {
     "type": "git",
     "url": "https://github.com/alwynou/iam-kit"
   },
-  "license": "MIT",
+  "author": {
+    "name": "alwynou",
+    "email": "alwynou@gmail.com",
+    "url": "https://github.com/alwynou"
+  },
+  "files": [
+    "src"
+  ],
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "unbuild",
+    "release": "bumpp --no-push",
+    "lint": "eslint .",
+    "fix": "eslint . --fix",
+    "publish": "pnpm publish --access public --no-git-checks"
+  },
   "devDependencies": {
+    "@alwynou/eslint-config": "^3.2.0",
     "bumpp": "^9.1.1",
-    "typescript": "^5.1.3"
+    "eslint": "^8.43.0",
+    "eslint-define-config": "^1.21.0",
+    "typescript": "^5.1.3",
+    "unbuild": "^1.2.1",
+    "vitest": "^0.32.2"
   }
 }
