@@ -19,7 +19,7 @@
     "url": "https://github.com/alwynou"
   },
   "files": [
-    "src"
+    "dist"
   ],
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
