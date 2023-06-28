@@ -38,7 +38,7 @@
     "release": "npm run update:expose && bumpp",
     "lint": "eslint .",
     "fix": "eslint . --fix",
-    "publish": "pnpm publish --access public"
+    "publish": "pnpm publish --access public --no-git-checks"
   },
   "devDependencies": {
     "@alwynou/eslint-config": "^3.2.0",
