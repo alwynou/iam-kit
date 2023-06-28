@@ -1,5 +1,5 @@
 /**
- * Pick part of prop form `obj`
+ * Pick part of `obj`'props
  *
  * @param {object} obj
  * @param {Array<string>} keys
