@@ -21,12 +21,21 @@
   "files": [
     "dist"
   ],
-  "main": "./dist/index.cjs",
+  "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./*": "./dist/*"
+  },
   "scripts": {
-    "build": "unbuild",
-    "release": "npm run build && bumpp && npm run publish",
+    "update:expose": "node ./script/update-expose.js",
+    "build": "npm run update:expose && unbuild",
+    "release": "npm run update:expose && bumpp",
     "lint": "eslint .",
     "fix": "eslint . --fix",
     "publish": "pnpm publish --access public"
