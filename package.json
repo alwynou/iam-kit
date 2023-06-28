@@ -1,7 +1,7 @@
 {
   "name": "iam-kit",
   "version": "0.0.0",
-  "description": "",
+  "description": "A compilation of personal utility tools.",
   "type": "module",
   "keywords": [
     "iam-kit"
@@ -26,10 +26,10 @@
   "types": "./dist/index.d.ts",
   "scripts": {
     "build": "unbuild",
-    "release": "bumpp --no-push",
+    "release": "npm run unbuild && bumpp && npm run publish",
     "lint": "eslint .",
     "fix": "eslint . --fix",
-    "publish": "pnpm publish --access public --no-git-checks"
+    "publish": "pnpm publish --access public"
   },
   "devDependencies": {
     "@alwynou/eslint-config": "^3.2.0",
