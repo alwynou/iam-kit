@@ -26,7 +26,7 @@
   "types": "./dist/index.d.ts",
   "scripts": {
     "build": "unbuild",
-    "release": "npm run unbuild && bumpp && npm run publish",
+    "release": "npm run build && bumpp && npm run publish",
     "lint": "eslint .",
     "fix": "eslint . --fix",
     "publish": "pnpm publish --access public"
