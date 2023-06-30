@@ -1,15 +1,15 @@
 /**
- * Assisting you in converting to the actual numerical type.
+ * Converts the given value to a number.
  *
- * @param {unknown} numberLike
- * @param {boolean} [strict=false]
- * @return {number}
+ * @param {unknown} numberLike - The value to be converted.
+ * @param {boolean} [strict=true] - If true, only conversion from string type is permitted. Default is `true`.
+ * @return {number} The converted number. If the conversion fails, NaN is returned.
  */
-export function toNumber(numberLike: unknown, strict?: boolean): number {
-  if (typeof numberLike === 'number') return numberLike
+export function toNumber(numberLike: unknown, strict = true): number {
+  const type = typeof numberLike
+  if (type === 'number') return numberLike as number
 
-  // In strict mode, only conversion from string type is permitted.
-  if (strict && typeof numberLike !== 'string') return NaN
+  if ((strict && type !== 'string') || type === 'symbol') return NaN
 
   const num = Number(numberLike)
   if (isNaN(num) || !isFinite(num)) return NaN
