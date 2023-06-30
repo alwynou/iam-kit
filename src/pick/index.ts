@@ -1,13 +1,23 @@
 /**
- * Pick part of `obj`'props
+ * Picks the specified keys from an object and returns a new object
+ * with only the selected keys.
  *
- * @param {object} obj
- * @param {Array<string>} keys
+ * @param {object} obj - The object from which to pick the keys.
+ * @param {Array} keys - The keys to pick from the object.
+ * @return {object} - A new object with only the selected keys.
  */
 export function pick<T extends object, K extends keyof T>(
   obj: T,
   keys: K[]
 ): Pick<T, K>
+/**
+ * Picks the specified keys from an object and returns a new object
+ * with only the selected keys.
+ *
+ * @param {object} obj - The object from which to pick the keys.
+ * @param {...Array} keys - The keys to pick from the object.
+ * @return {object} - A new object with only the selected keys.
+ */
 export function pick<T extends object, K extends keyof T>(
   obj: T,
   ...keys: K[]
@@ -17,8 +27,6 @@ export function pick<T extends object, K extends keyof T>(
   ...keys: K[]
 ) {
   if (Array.isArray(keys[0])) keys = keys[0]
-
-  if (Object.keys(obj).length === keys.length) return { ...obj }
 
   const result = {} as Pick<string, any>
 
