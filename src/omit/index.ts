@@ -26,7 +26,7 @@ export function omit<T extends object, K extends keyof T>(
 
   const result = { ...obj }
 
-  if (Object.keys(obj).length === keys.length) return result
+  if (Object.keys(obj).length === keys.length) return {}
 
   for (const key of keys) {
     if (key in obj) Reflect.deleteProperty(result, key)
