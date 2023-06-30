@@ -38,6 +38,8 @@
     "release": "npm run update:expose && bumpp",
     "lint": "eslint .",
     "fix": "eslint . --fix",
+    "test": "vitest run",
+    "test:watch": "vitest watch",
     "publish:npm": "pnpm publish --access public --no-git-checks"
   },
   "devDependencies": {
