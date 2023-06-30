@@ -5,12 +5,15 @@ export default defineBuildConfig({
     {
       input: './src',
       format: 'esm',
-      builder: 'mkdist'
+      builder: 'mkdist',
+      pattern: ['**', '!**/*.test.ts']
     },
     {
       input: './src',
       format: 'cjs',
-      builder: 'mkdist'
+      builder: 'mkdist',
+      pattern: ['**', '!**/*.test.ts'],
+      ext: 'cjs'
     }
   ],
   declaration: true

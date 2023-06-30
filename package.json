@@ -21,16 +21,20 @@
   "files": [
     "dist"
   ],
-  "main": "./dist/index.js",
+  "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "import": "./dist/index.mjs",
-      "require": "./dist/index.js",
+      "require": "./dist/index.cjs",
       "types": "./dist/index.d.ts"
     },
-    "./*": "./dist/*"
+    "./*": {
+      "import": "./dist/*/index.mjs",
+      "require": "./dist/*/index.cjs",
+      "types": "./dist/*/index.d.ts"
+    }
   },
   "scripts": {
     "update:expose": "node ./script/update-expose.js",
