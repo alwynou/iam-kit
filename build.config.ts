@@ -22,6 +22,7 @@ export default defineBuildConfig({
       declaration: true
     }
   ],
+  outDir: 'lib',
   rollup: {
     emitCJS: true
   }
