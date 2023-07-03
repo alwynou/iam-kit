@@ -23,6 +23,23 @@ describe('forEach', () => {
     expect(callback.mock.calls[4][0]).toBe('o')
   })
 
+  it('should iterate over a number and call the callback function', () => {
+    const num = 10
+    const callback = vitest.fn()
+    forEach(num, callback)
+    expect(callback.mock.calls.length).toBe(num)
+    expect(callback.mock.calls[0][0]).toBe(0)
+    expect(callback.mock.calls[1][0]).toBe(1)
+    expect(callback.mock.calls[2][0]).toBe(2)
+    expect(callback.mock.calls[3][0]).toBe(3)
+    expect(callback.mock.calls[4][0]).toBe(4)
+    expect(callback.mock.calls[5][0]).toBe(5)
+    expect(callback.mock.calls[6][0]).toBe(6)
+    expect(callback.mock.calls[7][0]).toBe(7)
+    expect(callback.mock.calls[8][0]).toBe(8)
+    expect(callback.mock.calls[9][0]).toBe(9)
+  })
+
   it('should iterate over an object and call the callback function', () => {
     const obj = { a: 1, b: 2, c: 3 }
     const callback = vitest.fn()
@@ -72,12 +89,6 @@ describe('forEach', () => {
   it('should not call the callback function if the collection is null', () => {
     const callback = vitest.fn()
     forEach(null, callback)
-    expect(callback.mock.calls.length).toBe(0)
-  })
-
-  it('should not call the callback function if the collection is not an array, string, object, Map, or Set', () => {
-    const callback = vitest.fn()
-    forEach(123, callback)
     expect(callback.mock.calls.length).toBe(0)
   })
 })
