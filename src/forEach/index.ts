@@ -40,8 +40,8 @@ export default forEach
 type ForEachSource =
   | string
   | number
-  | Set<any>
-  | Map<any, any>
+  // | Set<any>
+  // | Map<any, any>
   | Array<any>
   | Record<any, any>
 
@@ -49,11 +49,11 @@ type ForEachCallback<T extends ForEachSource> = T extends string
   ? (value: string, key: number, collection: string) => void
   : T extends number
   ? (value: number, key: number, collection: string) => void
-  : T extends Set<infer S>
-  ? (value: S, key: S, collection: T) => void
-  : T extends Map<infer K, infer V>
-  ? (value: V, key: K, collection: T) => void
-  : T extends Array<infer A>
+  : // : T extends Set<infer S>
+  // ? (value: S, key: S, collection: T) => void
+  // : T extends Map<infer K, infer V>
+  // ? (value: V, key: K, collection: T) => void
+  T extends Array<infer A>
   ? (value: A, key: number, collection: T) => void
   : T extends Record<infer K, infer V>
   ? (value: V, key: K, collection: T) => void
