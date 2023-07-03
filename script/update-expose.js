@@ -13,7 +13,7 @@ const funcNames = dirs.filter(
 let fileContent = ''
 
 for (const name of funcNames) {
-  fileContent += `export { ${name} } from './${name}/index'${eol}`
+  fileContent += `export * from './${name}/index'${eol}`
 }
 
 fs.writeFileSync(resolve(`../src/index.ts`), fileContent, 'utf8')
