@@ -57,4 +57,4 @@ type ForEachCallback<T extends ForEachSource> = T extends string
   ? (value: A, key: number, collection: T) => void
   : T extends Record<infer K, infer V>
   ? (value: V, key: K, collection: T) => void
-  : never
+  : (value: any, key: any, collection: T) => void
