@@ -1,8 +1,27 @@
 import { defineBuildConfig } from 'unbuild'
 
 export default defineBuildConfig({
-  entries: ['./src/index'],
-  declaration: true,
+  entries: [
+    {
+      input: './src',
+      builder: 'mkdist',
+      declaration: true,
+      format: 'cjs',
+      pattern: ['**/*.ts', '!**/*test*']
+    },
+    {
+      input: './src',
+      builder: 'mkdist',
+      declaration: true,
+      format: 'esm',
+      pattern: ['**/*.ts', '!**/*test*']
+    },
+    {
+      input: './src/index',
+      builder: 'rollup',
+      declaration: true
+    }
+  ],
   rollup: {
     emitCJS: true
   }
