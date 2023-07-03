@@ -1,6 +1,7 @@
 export { clone } from './clone/index'
 export { curry } from './curry/index'
 export { forEach } from './forEach/index'
+export { get } from './get/index'
 export { isEmpty } from './isEmpty/index'
 export { isObject } from './isObject/index'
 export { omit } from './omit/index'
