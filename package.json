@@ -35,7 +35,7 @@
   "scripts": {
     "update:expose": "node ./script/update-expose.js",
     "build": "npm run update:expose && unbuild",
-    "release": "npm run update:expose && bumpp",
+    "release": "npm run test && bumpp",
     "lint": "eslint .",
     "fix": "eslint . --fix",
     "test": "vitest run",
