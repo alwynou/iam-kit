@@ -15,15 +15,7 @@ export default defineBuildConfig({
       declaration: true,
       format: 'esm',
       pattern: ['**/*.ts', '!**/*test*']
-    },
-    {
-      input: './src/index',
-      builder: 'rollup',
-      declaration: true
     }
   ],
-  outDir: 'lib',
-  rollup: {
-    emitCJS: true
-  }
+  outDir: 'lib'
 })
