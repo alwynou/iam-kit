@@ -14,3 +14,5 @@ export function isPromise<T>(value: unknown): value is Promise<T> {
     isFunction((value as any).catch)
   )
 }
+
+export default isPromise
