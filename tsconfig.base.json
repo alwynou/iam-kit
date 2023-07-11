@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
     "composite": true,
     "target": "ESNext",
     "module": "ESNext",
