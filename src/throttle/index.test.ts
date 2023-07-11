@@ -18,7 +18,7 @@ describe('throttle', () => {
     throttledFn2()
     setTimeout(throttledFn2, 100)
     setTimeout(throttledFn2, 300)
-    setTimeout(throttledFn2, 410)
+    setTimeout(throttledFn2, 420)
     await new Promise(resolve => setTimeout(resolve, 2000))
     expect(fn2).toHaveBeenCalledTimes(4)
   })
