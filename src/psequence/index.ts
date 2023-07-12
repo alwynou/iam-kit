@@ -1,56 +1,38 @@
-import forEach from '../forEach'
 import isFunction from '../isFunction'
+import pcontrol from '../pcontrol'
+import type { ControlNext } from '../pcontrol'
 
 /**
- * Composes multiple functions into a single function that can be executed sequentially.
+ * Executes a sequence of functions asynchronously and returns an array of results.
  *
- * @param sequenceFns - An array of functions to compose.
- * @return A function that, when called, executes the composed functions sequentially.
+ * @param {SequenceFn[]} sequenceFns - An array of functions to be executed in sequence.
+ * @return {Promise<any[]>} - A promise that resolves to an array of results.
  */
-export function psequence<Ctx extends object | undefined>(
-  sequenceFns: SequenceFn<Ctx>[]
-) {
-  if (!Array.isArray(sequenceFns)) {
-    throw new TypeError('`psequence` function args must be an array!')
-  }
+export async function psequence<T extends SequenceFn[]>(
+  sequenceFns: T
+): SequenceReturn<T> {
+  const result: unknown[] = []
+  let prevRet: any = null
 
-  forEach(sequenceFns as SequenceFn<Ctx>[], fn => {
-    if (!isFunction(fn)) {
-      throw new TypeError(
-        '`psequence` function args must be composed of functions!'
-      )
+  const controlledFns = sequenceFns.filter(isFunction).map(f => {
+    return async (next: ControlNext) => {
+      prevRet = await f(prevRet)
+      result.push(prevRet)
+      await next()
     }
   })
 
-  let currentIndex = -1
-  let currentCtx = undefined as unknown as Ctx
-  function dispatch(i: number): Promise<any> {
-    if (i <= currentIndex) {
-      return Promise.reject(new Error('next() called multiple times'))
-    }
-    currentIndex = i
-    const fn = sequenceFns[i]
-    if (!fn) {
-      return Promise.resolve()
-    }
-    try {
-      return Promise.resolve(fn(dispatch.bind(null, i + 1), currentCtx))
-    } catch (error) {
-      return Promise.reject(error)
-    }
-  }
+  await pcontrol(controlledFns)()
 
-  return (context?: Ctx) => {
-    context && (currentCtx = context)
-    return dispatch(0)
-  }
+  return result as unknown as SequenceReturn<T>
 }
 
 export default psequence
 
-export type SequenceNext = () => unknown | Promise<unknown>
+type SequenceFn = (prevRet?: any) => Promise<unknown>
 
-type SequenceFn<C extends object | undefined> = (
-  next: SequenceNext,
-  context: C
-) => void
+type SequenceReturn<T extends unknown[]> = Promise<{
+  [P in keyof T]: T[P] extends (...args: any[]) => Promise<infer P>
+    ? Awaited<P>
+    : any
+}>
