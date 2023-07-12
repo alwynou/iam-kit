@@ -1,3 +1,3 @@
 ## I am kit
 
-what it is? idk.
+A collection of generic personal utility functions
