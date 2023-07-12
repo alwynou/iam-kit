@@ -87,6 +87,7 @@ web_modules/
 .next
 out
 lib
+src/index.ts
 
 # Nuxt.js build / generate output
 .nuxt
