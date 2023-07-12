@@ -43,7 +43,7 @@
     "publish:npm": "pnpm publish --access public --no-git-checks"
   },
   "devDependencies": {
-    "@alwynou/eslint-config": "^3.2.2",
+    "@alwynou/eslint-config": "^3.2.3",
     "bumpp": "^9.1.1",
     "eslint": "^8.43.0",
     "eslint-define-config": "^1.21.0",
