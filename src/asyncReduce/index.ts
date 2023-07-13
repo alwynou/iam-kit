@@ -1,4 +1,5 @@
-import psequence from '../psequence'
+import { isDefined } from '../isDefined'
+import { psequence } from '../psequence'
 
 /**
  * Returns a promise that resolves to the result of reducing the given collection using the provided callback function.
@@ -29,10 +30,12 @@ export function asyncReduce<T extends Array<any>>(
   callback: CallBackFn<T, any, any>,
   initialValue?: any
 ) {
-  let previousValue: any = initialValue ?? collection[0]
+  let previousValue: any
 
-  if (initialValue) {
+  if (isDefined(initialValue)) {
     previousValue = initialValue
+  } else {
+    previousValue = collection[0]
   }
 
   const wrapFns = collection
@@ -45,6 +48,8 @@ export function asyncReduce<T extends Array<any>>(
 
   return psequence(wrapFns).then(() => previousValue)
 }
+
+export default asyncReduce
 
 type CallBackFn<T, R, C> = (
   previousValue: R,
