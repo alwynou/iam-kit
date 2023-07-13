@@ -10,7 +10,7 @@ import { psequence } from '../psequence'
  */
 export function asyncMap<T extends Array<any>, U>(
   collection: T,
-  callback: (value: T[number], key: keyof T, source: T) => Promise<U>,
+  callback: (value: T[number], key: keyof T, source: T) => U | Promise<U>,
   sequence = true
 ): Promise<U[]> {
   return new Promise((resolve, reject) => {
