@@ -19,6 +19,7 @@ export default {
         'feat',
         'fix',
         'perf',
+        'pref',
         'refactor',
         'revert',
         'style',
