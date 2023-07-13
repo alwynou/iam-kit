@@ -35,22 +35,20 @@ export function asyncReduce<T extends Array<any>>(
     previousValue = initialValue
   }
 
-  return new Promise(resolve => {
-    const wrapFns = collection
-      .map((v, index) => {
-        if (!initialValue && index === 0) return null as any
-        return async () =>
-          (previousValue = await callback(previousValue, v, index, collection))
-      })
-      .filter(Boolean)
+  const wrapFns = collection
+    .map((v, index) => {
+      if (!initialValue && index === 0) return null as any
+      return async () =>
+        (previousValue = await callback(previousValue, v, index, collection))
+    })
+    .filter(Boolean)
 
-    resolve(psequence(wrapFns).then(() => previousValue))
-  })
+  return psequence(wrapFns).then(() => previousValue)
 }
 
-type CallBackFn<T, U, C> = (
-  previousValue: U,
+type CallBackFn<T, R, C> = (
+  previousValue: R,
   currentValue: C,
   index: number,
   source: T
-) => U | Promise<U>
+) => R | Promise<R>
