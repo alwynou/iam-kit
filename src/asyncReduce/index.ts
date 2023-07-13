@@ -1,5 +1,5 @@
-import { isDefined } from '../isDefined'
-import { psequence } from '../psequence'
+import { isDefined } from '../isDefined/index'
+import { psequence } from '../psequence/index'
 
 /**
  * Returns a promise that resolves to the result of reducing the given collection using the provided callback function.

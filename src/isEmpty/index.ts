@@ -12,3 +12,5 @@ export function isEmpty(value: unknown): boolean {
     (typeof value === 'string' && value.length === 0)
   )
 }
+
+export default isEmpty

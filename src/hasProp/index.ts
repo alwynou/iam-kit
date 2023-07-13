@@ -29,3 +29,5 @@ export function hasProp<T extends object>(obj: T, ...props: any[]) {
       : Object.prototype.hasOwnProperty.call(obj, prop)
   )
 }
+
+export default hasProp

@@ -18,3 +18,5 @@ export function throttle<T extends (...args: any[]) => unknown>(
     }
   } as T
 }
+
+export default throttle

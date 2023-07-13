@@ -1,4 +1,4 @@
-import isFunction from '../isFunction'
+import isFunction from '../isFunction/index'
 
 /**
  * Composes multiple functions into a single function that can be executed sequentially.

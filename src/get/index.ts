@@ -22,6 +22,8 @@ export function get<T extends object, K extends string, D = undefined>(
   return curValue === undefined ? defValue : curValue
 }
 
+export default get
+
 type Get<T, K, D> = K extends `${infer L}.${infer R}`
   ? L extends keyof T
     ? Get<T[L], R, D>

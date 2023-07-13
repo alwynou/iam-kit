@@ -1,5 +1,5 @@
-import isFunction from '../isFunction'
-import isObject from '../isObject'
+import isFunction from '../isFunction/index'
+import isObject from '../isObject/index'
 
 /**
  * Checks if the given value is a Promise.

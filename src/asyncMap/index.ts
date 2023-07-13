@@ -1,4 +1,4 @@
-import { psequence } from '../psequence'
+import { psequence } from '../psequence/index'
 
 /**
  * Executes an asynchronous map operation on a given collection.

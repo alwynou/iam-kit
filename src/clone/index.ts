@@ -15,6 +15,8 @@ export function clone<T>(value: T, deep = true): T {
     : cloneObj(value as any)
 }
 
+export default clone
+
 function cloneDeep<T>(value: T, clonedObjects = new WeakMap()): T {
   const type = typeof value
 

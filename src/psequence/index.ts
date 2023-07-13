@@ -1,6 +1,6 @@
-import isFunction from '../isFunction'
-import pcontrol from '../pcontrol'
-import type { ControlNext } from '../pcontrol'
+import isFunction from '../isFunction/index'
+import pcontrol from '../pcontrol/index'
+import type { ControlNext } from '../pcontrol/index'
 
 /**
  * Executes a sequence of functions asynchronously and returns an array of results.

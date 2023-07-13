@@ -1,5 +1,5 @@
-import isFunction from '../isFunction'
-import isPromise from '../isPromise'
+import isFunction from '../isFunction/index'
+import isPromise from '../isPromise/index'
 
 /**
  * Wraps a function with caching functionality.

@@ -28,3 +28,5 @@ export function debounce<T extends (...args: any[]) => any>(
     }
   } as T
 }
+
+export default debounce

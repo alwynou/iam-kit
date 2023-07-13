@@ -1,6 +1,6 @@
-import { isFunction } from '../isFunction'
-import { pcontrol } from '../pcontrol'
-import type { ControlNext } from '../pcontrol'
+import { isFunction } from '../isFunction/index'
+import { pcontrol } from '../pcontrol/index'
+import type { ControlNext } from '../pcontrol/index'
 
 /**
  * Executes an array of promise functions or async functions in parallel with a limit on the number of concurrent executions.

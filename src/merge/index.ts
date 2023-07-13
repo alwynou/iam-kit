@@ -1,7 +1,7 @@
-import forEach from '../forEach'
-import isArray from '../isArray'
-import _isObject from '../isObject'
-import typeIs from '../typeIs'
+import forEach from '../forEach/index'
+import isArray from '../isArray/index'
+import _isObject from '../isObject/index'
+import typeIs from '../typeIs/index'
 
 /**
  * Merge multiple objects into a single object using a deep merge algorithm.
@@ -24,6 +24,8 @@ export function merge<T extends MergeItem[]>(...objs: T): DeepMergeArr<T> {
 
   return result as DeepMergeArr<T>
 }
+
+export default merge
 
 function copyData(v: MergeItem) {
   return isArray(v) ? [...v] : _isObject(v, true) ? { ...v } : v
