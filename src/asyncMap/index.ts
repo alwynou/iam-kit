@@ -33,3 +33,5 @@ export function asyncMap<T extends Array<any>, U>(
     }
   })
 }
+
+export default asyncMap
