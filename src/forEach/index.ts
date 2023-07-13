@@ -10,18 +10,18 @@ export function forEach<T extends Array<any>>(
   collection: T,
   callback: (value: T[number], key: keyof T, source: T) => void
 ): void
-// export function forEach<T extends Set<any>>(
-//   collection: T,
-//   callback: T extends Set<infer V>
-//     ? (value: V, key: V, source: T) => void
-//     : never
-// ): void
-// export function forEach<T extends Map<any, any>>(
-//   collection: T,
-//   callback: T extends Map<infer K, infer V>
-//     ? (value: V, key: K, source: T) => void
-//     : never
-// ): void
+export function forEach<T extends Set<any>>(
+  collection: T,
+  callback: T extends Set<infer V>
+    ? (value: V, key: V, source: T) => void
+    : never
+): void
+export function forEach<T extends Map<any, any>>(
+  collection: T,
+  callback: T extends Map<infer K, infer V>
+    ? (value: V, key: K, source: T) => void
+    : never
+): void
 export function forEach<T extends Record<any, any>>(
   collection: T,
   callback: T extends Record<infer K, infer V>
@@ -52,10 +52,3 @@ export function forEach(collection: any, callback: (...args: any[]) => void) {
 }
 
 export default forEach
-
-// type NiceCallBack<T> = (value: any, key: any, collection: T) => void
-// type ObjectCallBack<T> = T extends Set<infer V>
-//   ? (value: V, key: V, source: T) => void
-//   : T extends Map<infer K, infer V> | Record<infer K, infer V>
-//   ? (value: V, key: K, source: T) => void
-//   : NiceCallBack<T>
