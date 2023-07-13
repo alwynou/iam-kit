@@ -6,7 +6,7 @@ async function bootstrap() {
 
   const indexTypeContet = await fs.readFile(path, 'utf8')
 
-  const replacedContent = indexTypeContet.replace(/index\.js/g, 'index.d.ts')
+  const replacedContent = indexTypeContet.replace(/index\.js/g, 'index')
 
   await fs.writeFile(path, replacedContent, 'utf8')
 }
