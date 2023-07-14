@@ -43,11 +43,14 @@ function diffImpl<T extends object, U extends object>(
 /**
  * Calculates the difference between two objects, obj1 and obj2.
  *
- * @param {T} obj1 - The first object to compare.
- * @param {U} obj2 - The second object to compare.
- * @return {any} The difference between obj1 and obj2.
+ * @param {Object} obj1 - The first object to compare.
+ * @param {Object} obj2 - The second object to compare.
+ * @return {Object} The difference between obj1 and obj2.
  */
-export function diff<T extends object, U extends object>(obj1: T, obj2: U) {
+export function diff<T extends object, U extends object>(
+  obj1: T,
+  obj2: U
+): T & U {
   return diffImpl(obj1, obj2)
 }
 
