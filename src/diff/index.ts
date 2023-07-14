@@ -26,11 +26,7 @@ function diffImpl<T extends object, U extends object>(
     } else if (isObject(value) && isObject((obj1 as any)[key])) {
       const ret = diffImpl((obj1 as any)[key], value, cache)
       if (ret !== cycleSymbol) result[key] = ret
-    } else if (
-      !isObject(value) &&
-      !isObject((obj1 as any)[key]) &&
-      !Object.is(value, (obj1 as any)[key])
-    ) {
+    } else if (!Object.is(value, (obj1 as any)[key])) {
       result[key] = value
     }
   })
