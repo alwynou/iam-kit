@@ -1,7 +1,7 @@
 {
   "name": "iam-kit",
   "version": "0.0.10",
-  "description": "A compilation of personal utility tools.",
+  "description": "A JS modern function personal toolkit",
   "type": "module",
   "keywords": [
     "iam-kit"
