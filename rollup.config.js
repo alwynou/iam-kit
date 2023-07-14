@@ -25,7 +25,11 @@ export default defineConfig([
         exports: 'named'
       }
     ],
-    plugins: [esbuild()]
+    plugins: [
+      esbuild({
+        target: 'es2018'
+      })
+    ]
   },
   {
     input,
