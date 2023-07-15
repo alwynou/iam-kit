@@ -10,6 +10,8 @@ export function isEqual<T, U>(a: T, b: U, shallow?: boolean): boolean {
   return shallow ? Object.is(a, b) : deepEqual(a, b)
 }
 
+export default isEqual
+
 function deepEqual<T, U>(a: T, b: U): boolean {
   if (typeof a !== typeof b) return false
 
