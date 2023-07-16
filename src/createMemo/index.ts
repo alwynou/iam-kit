@@ -2,17 +2,16 @@ import isFunction from '../isFunction/index'
 import isPromise from '../isPromise/index'
 
 /**
- * Wraps a function with caching functionality.
+ * Creates a memoized version of the given function.
  *
- * @template T - The type of the original function
- * @param {T} originalFn - The original function to be wrapped
- * @param {CacheWrapperConfig<T>} [config] - Configuration options for the cache wrapper
- * @returns {Wrapped<T>} - The wrapped function
+ * @param {Function} originalFn - The original function to be memoized.
+ * @param {Object} [config] - Configuration options for memoization.
+ * @return {Function} The memoized version of the original function.
  */
-export function cacheWrapper<T extends (...args: any[]) => any>(
+export function createMemo<T extends (...args: any[]) => any>(
   originalFn: T,
-  config?: CacheWrapperConfig<T>
-): Wrapped<T> {
+  config?: createMemoConfig<T>
+): Memoized<T> {
   let isPromiseFn = false
   const cacheMap = new Map<any, any>()
 
@@ -21,7 +20,7 @@ export function cacheWrapper<T extends (...args: any[]) => any>(
     if (shouldCache) cacheMap.set(key, value)
   }
 
-  const wrappedFn = ((...args) => {
+  const memoizedFn = ((...args) => {
     const matchKey = isFunction(config?.matchKey)
       ? config!.matchKey(...args)
       : config?.matchKey ?? '__default'
@@ -44,11 +43,11 @@ export function cacheWrapper<T extends (...args: any[]) => any>(
       updateCache(result, matchKey, ...args)
       return result
     }
-  }) as Wrapped<T>
+  }) as Memoized<T>
 
-  wrappedFn.original = originalFn
+  memoizedFn.original = originalFn
 
-  wrappedFn.cleanup = (key?: any) => {
+  memoizedFn.clear = (key?: any) => {
     if (key) {
       cacheMap.has(key) && cacheMap.delete(key)
     } else {
@@ -56,12 +55,12 @@ export function cacheWrapper<T extends (...args: any[]) => any>(
     }
   }
 
-  return wrappedFn
+  return memoizedFn
 }
 
-export default cacheWrapper
+export default createMemo
 
-interface CacheWrapperConfig<T extends (...args: any[]) => any> {
+interface createMemoConfig<T extends (...args: any[]) => any> {
   /**
    * Get match key from cacheMap
    *
@@ -79,12 +78,12 @@ interface CacheWrapperConfig<T extends (...args: any[]) => any> {
   ) => boolean
 }
 
-interface Wrapped<T extends (...args: any[]) => any> {
+interface Memoized<T extends (...args: any[]) => any> {
   (...args: Parameters<T>): ReturnType<T>
   /**
    * Cleanup all or given key cache  data
    */
-  cleanup: (key?: any) => void
+  clear: (key?: any) => void
 
   /**
    * Ignore cache and execute the original function

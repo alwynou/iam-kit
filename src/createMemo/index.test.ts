@@ -1,9 +1,9 @@
-import { cacheWrapper } from '.'
+import { createMemo } from '.'
 
-describe('cacheWrapper', () => {
+describe('createMemo', () => {
   it('should cache and retrieve the result of the original function', () => {
     const originalFn = vitest.fn().mockReturnValue('result')
-    const wrappedFn = cacheWrapper(originalFn)
+    const wrappedFn = createMemo(originalFn)
 
     const result1 = wrappedFn()
     const result2 = wrappedFn()
@@ -16,7 +16,7 @@ describe('cacheWrapper', () => {
   it('should cache and retrieve the result of the original function with custom matchKey', () => {
     const originalFn = vitest.fn().mockReturnValue('result')
     const matchKey = 'customKey'
-    const wrappedFn = cacheWrapper(originalFn, { matchKey })
+    const wrappedFn = createMemo(originalFn, { matchKey })
 
     const result1 = wrappedFn()
     const result2 = wrappedFn()
@@ -29,7 +29,7 @@ describe('cacheWrapper', () => {
   it('should not cache the result if shouldCache returns false', () => {
     const originalFn = vitest.fn().mockReturnValue('result')
     const shouldCache = vitest.fn().mockReturnValue(false)
-    const wrappedFn = cacheWrapper(originalFn, { shouldCache })
+    const wrappedFn = createMemo(originalFn, { shouldCache })
 
     const result1 = wrappedFn()
     const result2 = wrappedFn()
@@ -42,7 +42,7 @@ describe('cacheWrapper', () => {
 
   it('should cache and retrieve the result of the original function returning a promise', async () => {
     const originalFn = vitest.fn(() => Promise.resolve('result'))
-    const wrappedFn = cacheWrapper(originalFn)
+    const wrappedFn = createMemo(originalFn)
 
     const result1 = await wrappedFn()
     const result2 = await wrappedFn()
@@ -55,12 +55,12 @@ describe('cacheWrapper', () => {
   it('should cleanup the cache for a specific matchKey', () => {
     const originalFn = vitest.fn().mockReturnValue('result')
     const matchKey = 'customKey'
-    const wrappedFn = cacheWrapper(originalFn, { matchKey })
+    const wrappedFn = createMemo(originalFn, { matchKey })
 
     const result1 = wrappedFn()
     const result2 = wrappedFn()
     expect(originalFn).toHaveBeenCalledTimes(1)
-    wrappedFn.cleanup(matchKey)
+    wrappedFn.clear(matchKey)
     const result3 = wrappedFn()
     expect(originalFn).toHaveBeenCalledTimes(2)
 
@@ -71,7 +71,7 @@ describe('cacheWrapper', () => {
 
   it('should ignore the cache', () => {
     const originalFn = vitest.fn().mockReturnValue('result')
-    const wrappedFn = cacheWrapper(originalFn)
+    const wrappedFn = createMemo(originalFn)
 
     const result1 = wrappedFn()
     const result2 = wrappedFn.original()
