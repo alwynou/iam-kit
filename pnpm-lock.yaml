@@ -6,8 +6,8 @@ settings:
 
 devDependencies:
   '@alwynou/eslint-config':
-    specifier: ^3.2.5
-    version: 3.2.5(eslint@8.45.0)(typescript@5.1.6)
+    specifier: ^4.0.1
+    version: 4.0.1(eslint@8.45.0)(typescript@5.1.6)
   '@commitlint/cli':
     specifier: ^17.6.7
     version: 17.6.7
@@ -55,8 +55,8 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
-  /@alwynou/eslint-config@3.2.5(eslint@8.45.0)(typescript@5.1.6):
-    resolution: {integrity: sha512-sJGrunG64vxBjiia6RXnn+36XX+WH1UeCS3ttIRIVepsc1BMqV5Dm/3ZZ4mFl+a03mVpq7VyaJ6rT4Q3KeZ5jA==}
+  /@alwynou/eslint-config@4.0.1(eslint@8.45.0)(typescript@5.1.6):
+    resolution: {integrity: sha512-khkCiZV5eFWDLbaJX4vvBY3n/1HwAfSyhFttUR9BakDwuh342zFkVMiH6HY+vMZvcR7PcXWY0NOsRmmKWTy6Hg==}
     engines: {node: '>=16.14.0'}
     peerDependencies:
       eslint: ^8.0.0

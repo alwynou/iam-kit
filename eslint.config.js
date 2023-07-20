@@ -1,12 +1,10 @@
-import { all, typescript } from '@alwynou/eslint-config'
-import { defineFlatConfig } from 'eslint-define-config'
+import { alwynou, tsRules } from '@alwynou/eslint-config'
 
-typescript[0].languageOptions.parserOptions.project = ['./tsconfig.eslint.json']
+tsRules[0].languageOptions.parserOptions.project = ['./tsconfig.eslint.json']
 
-export default defineFlatConfig([
-  { ignores: ['**/lib'] },
-  ...all,
+export default alwynou([
   {
+    ignores: ['**/lib'],
     rules: {
       'no-unused-vars': 'off'
     }
