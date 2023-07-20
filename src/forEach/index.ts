@@ -6,7 +6,7 @@ export function forEach<T extends string>(
   collection: T,
   callback: (value: string, key: number, source: T) => void
 ): void
-export function forEach<T extends Array<any>>(
+export function forEach<T extends any[]>(
   collection: T,
   callback: (value: T[number], key: keyof T, source: T) => void
 ): void
@@ -18,12 +18,14 @@ export function forEach<T extends Set<any>>(
 ): void
 export function forEach<T extends Map<any, any>>(
   collection: T,
+  // eslint-disable-next-line @typescript-eslint/unified-signatures
   callback: T extends Map<infer K, infer V>
     ? (value: V, key: K, source: T) => void
     : never
 ): void
 export function forEach<T extends Record<any, any>>(
   collection: T,
+  // eslint-disable-next-line @typescript-eslint/unified-signatures
   callback: T extends Record<infer K, infer V>
     ? (value: V, key: K, source: T) => void
     : never

@@ -6,7 +6,9 @@ const sleep = (v: number) => new Promise(resolve => setTimeout(resolve, v))
 
 describe('pCompose', () => {
   it('should execute the composed functions sequentially', async () => {
-    type Context = { value: Number[] }
+    interface Context {
+      value: Number[]
+    }
     const context: Context = { value: [] }
 
     const fn1 = vitest.fn(async (next: any, context: Context) => {

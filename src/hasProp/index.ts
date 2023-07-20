@@ -7,7 +7,7 @@
  */
 export function hasProp<T extends object>(
   obj: T,
-  props: Array<string | number | symbol>
+  props: (string | number | symbol)[]
 ): boolean
 /**
  * Checks if the given object has all the specified properties.
@@ -18,11 +18,11 @@ export function hasProp<T extends object>(
  */
 export function hasProp<T extends object>(
   obj: T,
-  ...props: Array<string | number | symbol>
+  ...props: (string | number | symbol)[]
 ): boolean
 export function hasProp<T extends object>(obj: T, ...props: any[]) {
   if (Array.isArray(props[0])) props = props[0]
-  if (!props?.length) return true
+  if (!props.length) return true
   return props.every(prop =>
     typeof prop === 'symbol'
       ? Object.getOwnPropertySymbols(obj).includes(prop)

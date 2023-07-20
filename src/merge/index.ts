@@ -60,9 +60,7 @@ function isObject(v: unknown) {
   return _isObject(v, true) || isArray(v)
 }
 
-type MergeItem = {
-  readonly [K: string]: any
-}
+type MergeItem = Readonly<Record<string, any>>
 
 type DeepMerge<T, U> = [T, U] extends [object, object] ? T & U : {}
 

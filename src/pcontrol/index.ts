@@ -19,6 +19,7 @@ export function pcontrol<Ctx extends object | undefined>(
     }
     currentIndex = i
     const fn = controlFns[i]
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
     if (!fn) {
       return Promise.resolve()
     }

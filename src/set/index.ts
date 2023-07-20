@@ -9,9 +9,9 @@ import { isObject } from '../isObject/index'
  * @return {*} - The modified object with the value set at the specified path.
  */
 export function set<T, K>(obj: T, path: string, value: K): T {
-  if (!isObject(obj)) return obj
+  if (!isObject(obj) || !path) return obj
 
-  const pathArr = path?.split('.').filter(Boolean) ?? []
+  const pathArr = path.split('.').filter(Boolean)
   let curValue = obj as unknown as any
 
   while (pathArr.length > 0) {

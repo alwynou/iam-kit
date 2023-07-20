@@ -13,7 +13,9 @@ export function get<T extends object, K extends string, D = undefined>(
   path: K,
   defValue?: D
 ): Get<T, K, D> {
-  const pathArr = path?.split('.').filter(Boolean) ?? []
+  if (!isObject(obj) || !path) return obj as any
+
+  const pathArr = path.split('.').filter(Boolean)
   let curValue = obj as unknown as any
   while (pathArr.length > 0 && isObject(curValue)) {
     const curKey = pathArr.shift()!

@@ -8,7 +8,7 @@ import { psequence } from '../psequence/index'
  * @param [sequence=true] - Determines whether the async operations should be executed in sequence or in parallel. Default is true.
  * @return A promise that resolves to an array of the results of each async operation.
  */
-export function asyncMap<T extends Array<any>, U>(
+export function asyncMap<T extends any[], U>(
   collection: T,
   callback: (value: T[number], key: keyof T, source: T) => U | Promise<U>,
   sequence = true

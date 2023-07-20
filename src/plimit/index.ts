@@ -27,7 +27,7 @@ export function plimit<T extends PlimitItem[]>(
   }
   const sliceFn = (fns: T) => {
     const total = fns.length
-    const slicedPromiseFns: Array<PlimitItem>[] = []
+    const slicedPromiseFns: PlimitItem[][] = []
     let index = 0
     while (index <= total) {
       const arr = fns.slice(index, index + limit)
@@ -60,6 +60,6 @@ type PlimitReturn<T extends unknown[]> = Promise<{
     ? Awaited<P>
     : any
 }>
-type PlimitConfig = {
+interface PlimitConfig {
   limit?: number
 }
