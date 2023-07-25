@@ -6,29 +6,23 @@ export function forEach<T extends string>(
   collection: T,
   callback: (value: string, key: number, source: T) => void
 ): void
-export function forEach<T extends any[]>(
-  collection: T,
-  callback: (value: T[number], key: keyof T, source: T) => void
+export function forEach<T>(
+  collection: T[],
+  callback: (value: T, key: number, source: T[]) => void
 ): void
-export function forEach<T extends Set<any>>(
-  collection: T,
-  callback: T extends Set<infer V>
-    ? (value: V, key: V, source: T) => void
-    : never
+export function forEach<T>(
+  collection: Set<T>,
+  callback: (value: T, key: T, source: Set<T>) => void
 ): void
-export function forEach<T extends Map<any, any>>(
-  collection: T,
+export function forEach<K, V>(
+  collection: Map<K, V>,
   // eslint-disable-next-line @typescript-eslint/unified-signatures
-  callback: T extends Map<infer K, infer V>
-    ? (value: V, key: K, source: T) => void
-    : never
+  callback: (value: V, key: K, source: Map<K, V>) => void
 ): void
-export function forEach<T extends Record<any, any>>(
-  collection: T,
+export function forEach<K extends string | number, V>(
+  collection: Record<K, V>,
   // eslint-disable-next-line @typescript-eslint/unified-signatures
-  callback: T extends Record<infer K, infer V>
-    ? (value: V, key: K, source: T) => void
-    : never
+  callback: (value: V, key: K, source: Record<K, V>) => void
 ): void
 export function forEach(collection: any, callback: (...args: any[]) => void) {
   const type = typeof collection

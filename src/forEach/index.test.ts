@@ -41,7 +41,7 @@ describe('forEach', () => {
   })
 
   it('should iterate over an object and call the callback function', () => {
-    const obj = { a: 1, b: 2, c: 3 }
+    const obj = { a: 1, b: 2, c: '3' }
     const callback = vitest.fn()
     forEach(obj, callback)
     expect(callback.mock.calls.length).toBe(Object.keys(obj).length)
