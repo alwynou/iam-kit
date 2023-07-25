@@ -35,8 +35,9 @@
   "scripts": {
     "update:expose": "node ./script/update-expose.js",
     "build": "npm run update:expose && rollup -c && node ./script/post-build.js",
-    "release": "npm run test && bumpp",
+    "release": "npm run type:check && npm run test && bumpp",
     "lint": "eslint .",
+    "type:check": "tsc -p tsconfig.main.json --noEmit",
     "lint:fix": "eslint . --ext .js,.ts,.md,.json --max-warnings 0 --cache",
     "test": "vitest run",
     "test:watch": "vitest watch",
