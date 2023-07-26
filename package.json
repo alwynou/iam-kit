@@ -21,20 +21,20 @@
   "files": [
     "lib"
   ],
-  "main": "./lib/index.cjs",
-  "module": "./lib/index.mjs",
-  "types": "./lib/index.d.ts",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./lib/index.mjs",
-      "require": "./lib/index.cjs",
-      "types": "./lib/index.d.ts"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs",
+      "types": "./dist/index.d.ts"
     },
-    "./*": "./lib/*"
+    "./*": "./dist/*"
   },
   "scripts": {
     "update:expose": "node ./script/update-expose.js",
-    "build": "npm run update:expose && rollup -c && node ./script/post-build.js",
+    "build": "npm run update:expose && rollup -c",
     "release": "npm run type:check && npm run test && bumpp",
     "lint": "eslint .",
     "type:check": "tsc -p tsconfig.main.json --noEmit",

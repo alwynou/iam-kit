@@ -1,8 +1,10 @@
 {
   "extends": "./tsconfig.base.json",
   "compilerOptions": {
+    "lib": ["dom", "dom.iterable", "ESNext"],
+    "target": "ES2016",
     "composite": true
   },
-  "include": ["./src/**/*"],
+  "include": ["./src/**/*.ts"],
   "exclude": ["**/*.test.ts", "**/__test__/**/*"]
 }

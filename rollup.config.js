@@ -3,7 +3,8 @@ import esbuild from 'rollup-plugin-esbuild'
 import dts from 'rollup-plugin-dts'
 
 const input = './src/index.ts'
-const dir = 'lib'
+const dir = 'dist'
+
 export default defineConfig([
   {
     input,
@@ -27,17 +28,15 @@ export default defineConfig([
     ],
     plugins: [
       esbuild({
-        target: 'es2018'
+        target: 'es2016'
       })
     ]
   },
   {
     input,
     output: {
-      dir,
-      format: 'esm',
-      preserveModules: true,
-      preserveModulesRoot: 'src'
+      file: `./${dir}/index.d.ts`,
+      format: 'esm'
     },
     plugins: [dts()]
   }
