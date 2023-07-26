@@ -13,7 +13,17 @@ const funcNames = dirs.filter(
 let fileContent = ''
 
 for (const name of funcNames) {
-  fileContent += `export { ${name} } from './${name}/index'${eol}`
+  fileContent += `import { ${name} } from './${name}/index'${eol}`
 }
+
+fileContent += `${eol}const iamKit = {
+  ${funcNames.join(`,${eol}  `)}
+}${eol}`
+
+fileContent += `${eol}export {
+  ${funcNames.join(`,${eol}  `)},
+  iamKit as default
+}
+`
 
 fs.writeFileSync(resolve(`../src/index.ts`), fileContent, 'utf8')
