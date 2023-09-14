@@ -28,7 +28,7 @@ export function pick<T extends object, K extends keyof T>(
 ) {
   if (Array.isArray(keys[0])) keys = keys[0]
 
-  const result = {} as Pick<string, any>
+  const result = {} as Pick<T, K>
 
   for (const k of keys) {
     if (k in obj) result[k] = obj[k]
