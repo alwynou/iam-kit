@@ -15,7 +15,7 @@ export function createMemo<T extends (...args: any[]) => any>(
   let isPromiseFn = false
   const cacheMap = new Map<any, any>()
 
-  const updateCache = (value: any, key: any, ...args: Parameters<T>) => {
+  const updateCache = (value: any, key: any, args: Parameters<T>) => {
     const shouldCache = config?.shouldCache?.(value, ...args) ?? true
     if (shouldCache) cacheMap.set(key, value)
   }
@@ -36,11 +36,11 @@ export function createMemo<T extends (...args: any[]) => any>(
     if (isPromise(result)) {
       isPromiseFn = true
       return result.then(result => {
-        updateCache(result, matchKey, ...args)
+        updateCache(result, matchKey, args)
         return result
       })
     } else {
-      updateCache(result, matchKey, ...args)
+      updateCache(result, matchKey, args)
       return result
     }
   }) as Memoized<T>
