@@ -21,9 +21,9 @@ export function createMemo<T extends (...args: any[]) => any>(
   }
 
   const memoizedFn = ((...args) => {
-    const matchKey = isFunction(config?.matchKey)
-      ? config!.matchKey(...args)
-      : config?.matchKey ?? '__default'
+    const matchKey = isFunction(config?.key)
+      ? config!.key(...args)
+      : config?.key ?? '__default'
 
     if (cacheMap.has(matchKey)) {
       return isPromiseFn
@@ -66,7 +66,7 @@ interface createMemoConfig<T extends (...args: any[]) => any> {
    *
    * @default '__default'
    */
-  matchKey?: string | number | ((...args: Parameters<T>) => any)
+  key?: string | number | ((...args: Parameters<T>) => any)
   /**
    * whether shuloud cache
    *

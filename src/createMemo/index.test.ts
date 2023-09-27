@@ -16,7 +16,7 @@ describe('createMemo', () => {
   it('should cache and retrieve the result of the original function with custom matchKey', () => {
     const originalFn = vitest.fn().mockReturnValue('result')
     const matchKey = 'customKey'
-    const wrappedFn = createMemo(originalFn, { matchKey })
+    const wrappedFn = createMemo(originalFn, { key: matchKey })
 
     const result1 = wrappedFn()
     const result2 = wrappedFn()
@@ -55,7 +55,7 @@ describe('createMemo', () => {
   it('should cleanup the cache for a specific matchKey', () => {
     const originalFn = vitest.fn().mockReturnValue('result')
     const matchKey = 'customKey'
-    const wrappedFn = createMemo(originalFn, { matchKey })
+    const wrappedFn = createMemo(originalFn, { key: matchKey })
 
     const result1 = wrappedFn()
     const result2 = wrappedFn()
