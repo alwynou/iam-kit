@@ -4,28 +4,28 @@ import isDefined from '../isDefined/index'
 import isObject from '../isObject/index'
 import { typeIs } from '../typeIs/index'
 
-const cycleSymbol = Symbol()
 type Obj = Record<any, any>
 function diffImpl<T extends Obj, U extends Obj>(
   obj1: T,
   obj2: U,
-  cache = new Set()
+  cache = new WeakMap()
 ): DeepPartial<T & U> {
   if ((!isObject(obj1) && !isObject(obj2)) || typeIs(obj1) !== typeIs(obj2))
     return obj2
 
-  if (cache.has(obj2)) return cycleSymbol as any
+  // TODO fix cycle reference equal result
+  if (cache.has(obj2)) return cache.get(obj2) as any
 
   const result: Record<any, any> = isObject(obj1, true) ? {} : []
 
-  cache.add(obj2)
+  cache.set(obj2, result)
 
   forEach(obj2, (value, key) => {
     if (typeIs(value) !== typeIs(obj1[key])) {
       result[key] = value
     } else if (isObject(value) && isObject(obj1[key])) {
       const ret = diffImpl(obj1[key], value, cache)
-      if (ret !== (cycleSymbol as any)) result[key] = ret
+      result[key] = ret
     } else if (!Object.is(value, obj1[key])) {
       result[key] = value
     }
@@ -37,7 +37,15 @@ function diffImpl<T extends Obj, U extends Obj>(
     }
   })
 
-  return (isArray(result) ? result.filter(isDefined) : result) as any
+  return clean(result) as any
+}
+
+function clean<T extends object>(obj: T): T {
+  return isArray(obj)
+    ? (obj.filter(isDefined) as T)
+    : Object.keys(obj).length === 0
+    ? (undefined as any)
+    : obj
 }
 
 /**

@@ -45,26 +45,28 @@ describe('diff', () => {
   })
 
   it('should handle cycle reference', () => {
-    const cycleObj = { name: 1 }
-    ;(cycleObj as any).cycle = cycleObj
+    const cycleObj = { name: 1, age: 12 }
+    ;(cycleObj as any).cycleObj = cycleObj
 
-    const obj1 = { name: 'John', age: 30, cycleObj }
+    const obj1 = { name: 'John', age: 30, cycleObj, hobbies: ['reading'] }
     const obj2 = {
       name: 'John',
       age: 35,
       hobbies: ['reading', 'gaming'],
-      cycleObj: { name: 2, cycle: cycleObj }
+      cycleObj: { name: 2, cycleObj }
     }
 
     expect(diff(obj1, obj2)).toMatchInlineSnapshot(`
       {
         "age": 35,
         "cycleObj": {
-          "cycle": {},
+          "age": undefined,
+          "cycleObj": {
+            "cycleObj": [Circular],
+          },
           "name": 2,
         },
         "hobbies": [
-          "reading",
           "gaming",
         ],
       }
